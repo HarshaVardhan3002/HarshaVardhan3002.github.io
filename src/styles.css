@@ -1,0 +1,125 @@
+:root {
+  --font-ui: "Schibsted Grotesk", "Segoe UI Variable Text", system-ui, sans-serif;
+  --font-display: "Archivo", "Arial Narrow", sans-serif;
+  --font-mono: "VT323", ui-monospace, monospace;
+  --ink: #f6f1e7;
+  --dim: #b9b2a6;
+  --accent: #ffe94a;
+  --cyan: #72f4ff;
+  --bg: #070708;
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+body {
+  font-family: var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+/* The TV fills the window and owns all scrolling. */
+html.tv-on,
+html.tv-on body {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+.tv {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+}
+.tv-screen {
+  position: absolute;
+  inset: 0;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* The HTML copy: hidden behind the picture, read by keyboards and screen readers. */
+.tv-a11y {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Plain page: shown when the browser cannot draw WebGL, or without JavaScript. */
+.plain {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 40px 16px 96px;
+  line-height: 1.55;
+  font-size: 18px;
+}
+.plain h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 62%;
+  font-size: clamp(44px, 9vw, 84px);
+  line-height: 0.95;
+  margin: 8px 0 16px;
+}
+.plain h2 {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 24px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin: 48px 0 12px;
+}
+.plain p,
+.plain li {
+  color: var(--ink);
+}
+.plain .dim {
+  color: var(--dim);
+}
+.plain ul,
+.plain ol {
+  padding-left: 22px;
+}
+.plain li + li {
+  margin-top: 8px;
+}
+.plain a {
+  color: var(--accent);
+}
+.plain button {
+  font: inherit;
+  font-size: 16px;
+  color: var(--ink);
+  background: #1b1a20;
+  border: 1px solid #3a3842;
+  border-radius: 999px;
+  padding: 10px 18px;
+  margin: 6px 6px 6px 0;
+  cursor: pointer;
+  text-align: left;
+}
+.plain button:hover {
+  border-color: var(--accent);
+}
+.plain :focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.plain .note {
+  border-left: 3px solid var(--accent);
+  padding-left: 14px;
+  color: var(--dim);
+}
