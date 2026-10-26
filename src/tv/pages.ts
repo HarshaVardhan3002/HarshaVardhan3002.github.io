@@ -2,6 +2,8 @@
 // the public repos and the measured results; keep wording plain and never
 // claim upstream work. Each page is a list of blocks the TV lays out in order.
 
+import { hf } from "../hf";
+
 export type Link = { label: string; href: string; id?: string };
 export type Row = { title: string; sub: string; meta?: string; href: string; id?: string };
 export type Entry = { when: string; title: string; where: string; body?: string };
@@ -24,6 +26,17 @@ export type Page = { ch: number; blocks: Block[] };
 
 const GH = "https://github.com/HarshaVardhan3002";
 const HF = "https://huggingface.co/Harsha001";
+
+// Live Hugging Face numbers, fetched at build time (see scripts/hf-stats.mjs).
+const num = (x: number) => x.toLocaleString("en-US");
+const repoDl = hf.repos as Record<string, number>;
+const ggufCount = Object.keys(repoDl).filter((r) => !r.endsWith("-XDNA2")).length;
+const npuCount = hf.models - ggufCount;
+/** "Text · 682 downloads": the kind of model plus its all-time downloads, when there are any. */
+const dl = (kind: string, ...repos: string[]) => {
+  const n = repos.reduce((sum, r) => sum + (repoDl[r] ?? 0), 0);
+  return n > 0 ? `${kind} · ${num(n)} downloads` : kind;
+};
 
 const raw: Page[] = [
   {
@@ -131,6 +144,13 @@ const raw: Page[] = [
       {
         t: "numbers",
         items: [
+          { value: num(hf.downloads), label: `downloads on Hugging Face, all time (as of ${hf.synced})` },
+          { value: String(hf.models), label: `models published: ${ggufCount} for AMD GPUs, ${npuCount} for the NPU` },
+        ],
+      },
+      {
+        t: "numbers",
+        items: [
           { value: "6.25", label: "perplexity at 4-bit (BF16: 6.17)" },
           { value: "92.5%", label: "same top token as BF16" },
           { value: "2.16%", label: "word errors on the NPU (CPU: 2.14%)" },
@@ -140,7 +160,7 @@ const raw: Page[] = [
         t: "bullets",
         heading: "WHAT I BUILT",
         items: [
-          "GGUF quantizations of 15 open models: text models from 4B up to Ornith 1.5 122B, MiniCPM-V 4.7 for vision, FLUX.3 and MOSS-Image for pictures, and Drama-3 for speech.",
+          `GGUF quantizations of ${ggufCount} open models: text models from 4B up to Ornith 1.5 122B, MiniCPM-V 4.7 for vision, FLUX.3 and MOSS-Image for pictures, and Drama-3 for speech.`,
           "Method: BF16 conversion, an importance matrix, one quantization per type, then perplexity and KL divergence against BF16. Files that another file beats on both size and quality are not published.",
           "In my public fork: an opt-in scale per tensor for models whose weights are too small for the format's block scales (reported upstream), and a runtime for decision models, checked against PyTorch.",
           "Phonon-2 speech recognition ported to the Ryzen AI NPU through ONNX and Windows ML: all 1,366 encoder operators run on the NPU in BF16. The same port for Underdog Bark 3.0.",
@@ -589,20 +609,22 @@ const raw: Page[] = [
         t: "list",
         heading: "OPEN MODELS ON HUGGING FACE",
         items: [
-          { title: "MiniCPM-V 4.7 35B-A3B", sub: "Vision and language, 35B mixture of experts.", meta: "Text + image", href: `${HF}/MiniCPM-V-4.7-35B-A3B-ROCmFPX` },
-          { title: "Ornith 1.5 122B", sub: "The largest model in the set.", meta: "Text", href: `${HF}/Ornith-1.5-122B-ROCmFPX` },
-          { title: "Drama-3", sub: "Text to speech.", meta: "Speech", href: `${HF}/Drama-3-ROCmFPX-GGUF` },
-          { title: "FLUX.3 Image Klein", sub: "Text to image.", meta: "Image", href: `${HF}/flux-3-image-klein-ROCmFPX` },
-          { title: "MOSS-Image SFT", sub: "Text to image.", meta: "Image", href: `${HF}/MOSS-Image-SFT-ROCmFPX` },
-          { title: "NVIDIA Nemotron 3.5 Bolt E4B", sub: "A small, fast text model.", meta: "Text", href: `${HF}/NVIDIA-Nemotron-3.5-Bolt-E4B-ROCmFPX` },
-          { title: "Spark-X2.6 4B", sub: "A small text model.", meta: "Text", href: `${HF}/Spark-X2.6-4B-ROCmFPX` },
-          { title: "Sage-A1.5", sub: "Text model.", meta: "Text", href: `${HF}/Sage-A1.5-ROCmFPX` },
-          { title: "Kolibri-1", sub: "Text model.", meta: "Text", href: `${HF}/Kolibri-1-ROCmFPX` },
-          { title: "Flint", sub: "Text model with tiny weights, made possible by the scale fix.", meta: "Text", href: `${HF}/flint-ROCmFPX` },
-          { title: "Carbon-X", sub: "A DNA language model.", meta: "DNA", href: `${HF}/Carbon-X-ROCmFPX` },
-          { title: "elephant-1 and mammoth-1", sub: "Decision models that score options in one pass.", meta: "Decisions", href: `${HF}/elephant-1-ROCmFPX` },
-          { title: "Phonon-2 on the NPU", sub: "Speech recognition on the Ryzen AI NPU, 2.16% word errors.", meta: "NPU", href: `${HF}/Phonon-2-XDNA2` },
-          { title: "Underdog Bark 3.0 on the NPU", sub: "English speech recognition on the Ryzen AI NPU, 2.31% word errors.", meta: "NPU", href: `${HF}/Underdog-Bark-3.0-XDNA2` },
+          { title: "MiniCPM-V 4.7 35B-A3B", sub: "Vision and language, 35B mixture of experts.", meta: dl("Text + image", "MiniCPM-V-4.7-35B-A3B-ROCmFPX"), href: `${HF}/MiniCPM-V-4.7-35B-A3B-ROCmFPX` },
+          { title: "Ornith 1.5 122B", sub: "The largest model in the set.", meta: dl("Text", "Ornith-1.5-122B-ROCmFPX"), href: `${HF}/Ornith-1.5-122B-ROCmFPX` },
+          { title: "Drama-3", sub: "Text to speech.", meta: dl("Speech", "Drama-3-ROCmFPX-GGUF"), href: `${HF}/Drama-3-ROCmFPX-GGUF` },
+          { title: "FLUX.3 Image Klein", sub: "Text to image.", meta: dl("Image", "flux-3-image-klein-ROCmFPX"), href: `${HF}/flux-3-image-klein-ROCmFPX` },
+          { title: "MOSS-Image SFT", sub: "Text to image.", meta: dl("Image", "MOSS-Image-SFT-ROCmFPX"), href: `${HF}/MOSS-Image-SFT-ROCmFPX` },
+          { title: "NVIDIA Nemotron 3.5 Bolt E4B", sub: "A small, fast text model.", meta: dl("Text", "NVIDIA-Nemotron-3.5-Bolt-E4B-ROCmFPX"), href: `${HF}/NVIDIA-Nemotron-3.5-Bolt-E4B-ROCmFPX` },
+          { title: "Spark-X2.6 4B", sub: "A small text model.", meta: dl("Text", "Spark-X2.6-4B-ROCmFPX"), href: `${HF}/Spark-X2.6-4B-ROCmFPX` },
+          { title: "Sage-A1.5", sub: "Text model.", meta: dl("Text", "Sage-A1.5-ROCmFPX"), href: `${HF}/Sage-A1.5-ROCmFPX` },
+          { title: "Kolibri-1", sub: "Text model.", meta: dl("Text", "Kolibri-1-ROCmFPX"), href: `${HF}/Kolibri-1-ROCmFPX` },
+          { title: "Flint", sub: "Text model with tiny weights, made possible by the scale fix.", meta: dl("Text", "flint-ROCmFPX"), href: `${HF}/flint-ROCmFPX` },
+          { title: "Nanbeige 4.3 33B", sub: "A dense 33B text model, scored against BF16 on every file.", meta: dl("Text", "Nanbeige4.3-33B-ROCmFPX"), href: `${HF}/Nanbeige4.3-33B-ROCmFPX` },
+          { title: "humanizer 12B", sub: "A 12B model (Gemma 4) that rewrites text to read naturally.", meta: dl("Text", "humanizer-12b-ROCmFPX"), href: `${HF}/humanizer-12b-ROCmFPX` },
+          { title: "Carbon-X", sub: "A DNA language model.", meta: dl("DNA", "Carbon-X-ROCmFPX"), href: `${HF}/Carbon-X-ROCmFPX` },
+          { title: "elephant-1 and mammoth-1", sub: "Decision models that score options in one pass.", meta: dl("Decisions", "elephant-1-ROCmFPX", "mammoth-1-ROCmFPX"), href: `${HF}/elephant-1-ROCmFPX` },
+          { title: "Phonon-2 on the NPU", sub: "Speech recognition on the Ryzen AI NPU, 2.16% word errors.", meta: dl("NPU", "Phonon-2-XDNA2"), href: `${HF}/Phonon-2-XDNA2` },
+          { title: "Underdog Bark 3.0 on the NPU", sub: "English speech recognition on the Ryzen AI NPU, 2.31% word errors.", meta: dl("NPU", "Underdog-Bark-3.0-XDNA2"), href: `${HF}/Underdog-Bark-3.0-XDNA2` },
         ],
       },
       { t: "links", items: [{ label: "All repos on GitHub", href: `${GH}?tab=repositories` }, { label: "All models on Hugging Face", href: HF }] },

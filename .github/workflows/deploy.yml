@@ -4,6 +4,9 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  # Rebuild daily so the Hugging Face numbers stay current.
+  schedule:
+    - cron: "40 9 * * *"
 
 permissions:
   contents: read

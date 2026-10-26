@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "stats": "node scripts/hf-stats.mjs",
+    "prebuild": "node scripts/hf-stats.mjs",
     "build": "tsc -b && vite build",
     "preview": "vite preview"
   },

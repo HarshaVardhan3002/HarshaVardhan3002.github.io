@@ -1,3 +1,5 @@
+import { hf } from "./hf";
+
 // Facts for the site. Everything here comes from the verified master profile
 // and the public repos. Change wording here, not inside the components.
 
@@ -130,8 +132,8 @@ export const channels: Channel[] = [
     guide: "Quantized open models in AMD low-bit formats, and speech models ported to the Ryzen AI NPU.",
     repo: "https://huggingface.co/Harsha001",
     teletext: [
-      "{w}Open models re-packed for AMD chips",
-      "{w}in the ROCmFPX low-bit formats.",
+      `{y}${hf.models}{w} open models, {y}${hf.downloads.toLocaleString("en-US")}{w} downloads,`,
+      "{w}re-packed for AMD in ROCmFPX formats.",
       "",
       "{c}MiniCPM-V 4.7 35B, 4-bit, 22 GB",
       "{w}perplexity {y}6.25{w}  (BF16 {y}6.17{w})",
