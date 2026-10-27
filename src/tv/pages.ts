@@ -35,8 +35,36 @@ const npuCount = hf.models - ggufCount;
 /** "Text · 682 downloads": the kind of model plus its all-time downloads, when there are any. */
 const dl = (kind: string, ...repos: string[]) => {
   const n = repos.reduce((sum, r) => sum + (repoDl[r] ?? 0), 0);
-  return n > 0 ? `${kind} · ${num(n)} downloads` : kind;
+  return n > 0 ? `${kind} · ${num(n)} download${n === 1 ? "" : "s"}` : kind;
 };
+
+// New uploads join the model list by themselves: hand-written rows come first,
+// then every model not listed yet, newest first. Rows for deleted models drop out.
+// Uncensored models count in the totals but are never listed by name.
+const info = (hf as { info?: Record<string, { tag: string; created: string }> }).info ?? {};
+const KIND: Record<string, [string, string]> = {
+  "text-generation": ["Text", "A text model."],
+  "image-text-to-text": ["Text + image", "A vision and language model."],
+  "text-to-image": ["Image", "Text to image."],
+  "text-to-speech": ["Speech", "Text to speech."],
+  "automatic-speech-recognition": ["Speech to text", "Speech recognition."],
+};
+const repoOf = (href: string) => href.slice(HF.length + 1);
+function models(rows: (Row & { also?: string[] })[]): Row[] {
+  const known = Object.keys(repoDl).length > 0;
+  const listed = new Set(rows.flatMap((r) => [repoOf(r.href), ...(r.also ?? [])]));
+  const kept = rows.filter((r) => !known || repoOf(r.href) in repoDl).map(({ also: _, ...r }) => r);
+  const fresh = Object.keys(repoDl)
+    .filter((r) => !listed.has(r) && !/uncensored/i.test(r))
+    .sort((a, b) => (info[b]?.created ?? "").localeCompare(info[a]?.created ?? ""))
+    .map((r) => {
+      const npu = r.endsWith("-XDNA2");
+      const [kind, sub] = npu ? ["NPU", "Runs on the Ryzen AI NPU."] : (KIND[info[r]?.tag ?? ""] ?? ["Model", "An open model."]);
+      const title = r.replace(/-(ROCmFPX|GGUF|XDNA2|StrixHalo)(?=-|$)/g, "").replace(/-/g, " ");
+      return { title: npu ? `${title} on the NPU` : title, sub, meta: dl(kind, r), href: `${HF}/${r}` };
+    });
+  return [...kept, ...fresh];
+}
 
 const raw: Page[] = [
   {
@@ -160,7 +188,8 @@ const raw: Page[] = [
         t: "bullets",
         heading: "WHAT I BUILT",
         items: [
-          `GGUF quantizations of ${ggufCount} open models: text models from 4B up to Ornith 1.5 122B, MiniCPM-V 4.7 for vision, FLUX.3 and MOSS-Image for pictures, and Drama-3 for speech.`,
+          `GGUF quantizations of ${ggufCount} open models: text models from 4B up to DeepSeek V4.1 Flash, MiniCPM-V 4.7 for vision, FLUX.3 and MOSS-Image for pictures, and Drama-3 and Maya2 for speech.`,
+          "For the biggest models: DeepSeek V4.1 Flash and MiniMax M3.1 cut down to fit one 128 GB AMD Strix Halo, by removing the experts the model uses least and reusing IST-DASLab's and Unsloth's 1 to 2 bit quantizations.",
           "Method: BF16 conversion, an importance matrix, one quantization per type, then perplexity and KL divergence against BF16. Files that another file beats on both size and quality are not published.",
           "In my public fork: an opt-in scale per tensor for models whose weights are too small for the format's block scales (reported upstream), and a runtime for decision models, checked against PyTorch.",
           "Phonon-2 speech recognition ported to the Ryzen AI NPU through ONNX and Windows ML: all 1,366 encoder operators run on the NPU in BF16. The same port for Underdog Bark 3.0.",
@@ -608,10 +637,13 @@ const raw: Page[] = [
       {
         t: "list",
         heading: "OPEN MODELS ON HUGGING FACE",
-        items: [
+        items: models([
+          { title: "DeepSeek V4.1 Flash for Strix Halo", sub: "A 510 GB model cut to about 97 GiB, so it runs on one 128 GB AMD Strix Halo. A community test release.", meta: dl("Text", "DeepSeek-V4.1-Flash-1017-GSQ-RCO-StrixHalo-GGUF"), href: `${HF}/DeepSeek-V4.1-Flash-1017-GSQ-RCO-StrixHalo-GGUF` },
+          { title: "MiniMax M3.1 Flash for Strix Halo", sub: "Cut from 129 GB to about 97 GB to fit one 128 GB AMD Strix Halo. A community test release.", meta: dl("Text", "MiniMax-M3.1-Flash-StrixHalo-GGUF"), href: `${HF}/MiniMax-M3.1-Flash-StrixHalo-GGUF` },
           { title: "MiniCPM-V 4.7 35B-A3B", sub: "Vision and language, 35B mixture of experts.", meta: dl("Text + image", "MiniCPM-V-4.7-35B-A3B-ROCmFPX"), href: `${HF}/MiniCPM-V-4.7-35B-A3B-ROCmFPX` },
-          { title: "Ornith 1.5 122B", sub: "The largest model in the set.", meta: dl("Text", "Ornith-1.5-122B-ROCmFPX"), href: `${HF}/Ornith-1.5-122B-ROCmFPX` },
+          { title: "Ornith 1.5 122B", sub: "A 122B text model.", meta: dl("Text", "Ornith-1.5-122B-ROCmFPX"), href: `${HF}/Ornith-1.5-122B-ROCmFPX` },
           { title: "Drama-3", sub: "Text to speech.", meta: dl("Speech", "Drama-3-ROCmFPX-GGUF"), href: `${HF}/Drama-3-ROCmFPX-GGUF` },
+          { title: "Maya2 Native", sub: "Text to speech in English and 11 Indian languages, with a native runtime in my ROCmFPX fork that matches PyTorch.", meta: dl("Speech", "Maya2-Native-GGUF"), href: `${HF}/Maya2-Native-GGUF` },
           { title: "FLUX.3 Image Klein", sub: "Text to image.", meta: dl("Image", "flux-3-image-klein-ROCmFPX"), href: `${HF}/flux-3-image-klein-ROCmFPX` },
           { title: "MOSS-Image SFT", sub: "Text to image.", meta: dl("Image", "MOSS-Image-SFT-ROCmFPX"), href: `${HF}/MOSS-Image-SFT-ROCmFPX` },
           { title: "NVIDIA Nemotron 3.5 Bolt E4B", sub: "A small, fast text model.", meta: dl("Text", "NVIDIA-Nemotron-3.5-Bolt-E4B-ROCmFPX"), href: `${HF}/NVIDIA-Nemotron-3.5-Bolt-E4B-ROCmFPX` },
@@ -622,10 +654,10 @@ const raw: Page[] = [
           { title: "Nanbeige 4.3 33B", sub: "A dense 33B text model, scored against BF16 on every file.", meta: dl("Text", "Nanbeige4.3-33B-ROCmFPX"), href: `${HF}/Nanbeige4.3-33B-ROCmFPX` },
           { title: "humanizer 12B", sub: "A 12B model (Gemma 4) that rewrites text to read naturally.", meta: dl("Text", "humanizer-12b-ROCmFPX"), href: `${HF}/humanizer-12b-ROCmFPX` },
           { title: "Carbon-X", sub: "A DNA language model.", meta: dl("DNA", "Carbon-X-ROCmFPX"), href: `${HF}/Carbon-X-ROCmFPX` },
-          { title: "elephant-1 and mammoth-1", sub: "Decision models that score options in one pass.", meta: dl("Decisions", "elephant-1-ROCmFPX", "mammoth-1-ROCmFPX"), href: `${HF}/elephant-1-ROCmFPX` },
+          { title: "elephant-1 and mammoth-1", sub: "Decision models that score options in one pass.", meta: dl("Decisions", "elephant-1-ROCmFPX", "mammoth-1-ROCmFPX"), href: `${HF}/elephant-1-ROCmFPX`, also: ["mammoth-1-ROCmFPX"] },
           { title: "Phonon-2 on the NPU", sub: "Speech recognition on the Ryzen AI NPU, 2.16% word errors.", meta: dl("NPU", "Phonon-2-XDNA2"), href: `${HF}/Phonon-2-XDNA2` },
           { title: "Underdog Bark 3.0 on the NPU", sub: "English speech recognition on the Ryzen AI NPU, 2.31% word errors.", meta: dl("NPU", "Underdog-Bark-3.0-XDNA2"), href: `${HF}/Underdog-Bark-3.0-XDNA2` },
-        ],
+        ]),
       },
       { t: "links", items: [{ label: "All repos on GitHub", href: `${GH}?tab=repositories` }, { label: "All models on Hugging Face", href: HF }] },
     ],

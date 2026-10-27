@@ -13,10 +13,14 @@ async function get(url) {
 }
 
 try {
-  const models = await get(`https://huggingface.co/api/models?author=${USER}&limit=1000&expand[]=downloadsAllTime&expand[]=likes`);
+  const models = await get(`https://huggingface.co/api/models?author=${USER}&limit=1000&expand[]=downloadsAllTime&expand[]=likes&expand[]=pipeline_tag&expand[]=createdAt`);
   const user = await get(`https://huggingface.co/api/users/${USER}/overview`).catch(() => ({}));
   const repos = Object.fromEntries(
     models.map((m) => [m.id.split("/")[1], m.downloadsAllTime ?? 0]).sort((a, b) => b[1] - a[1]),
+  );
+  // Model type and upload date, so new models can join the site's list on their own.
+  const info = Object.fromEntries(
+    models.map((m) => [m.id.split("/")[1], { tag: m.pipeline_tag ?? "", created: (m.createdAt ?? "").slice(0, 10) }]),
   );
   const data = {
     synced: new Date().toISOString().slice(0, 10),
@@ -25,6 +29,7 @@ try {
     likes: models.reduce((s, m) => s + (m.likes ?? 0), 0),
     followers: user.numFollowers ?? 0,
     repos,
+    info,
   };
   const body =
     "// Written by scripts/hf-stats.mjs before each build. Do not edit by hand.\n" +

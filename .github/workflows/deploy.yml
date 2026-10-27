@@ -4,12 +4,12 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
-  # Rebuild daily so the Hugging Face numbers stay current.
+  # Rebuild every 6 hours so the Hugging Face numbers and model list stay current.
   schedule:
-    - cron: "40 9 * * *"
+    - cron: "40 */6 * * *"
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -28,6 +28,18 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+      # Save the new numbers to the repo once a day. The commit also keeps the
+      # schedule alive: GitHub turns off schedules in repos with 60 days of no activity.
+      - name: Save the Hugging Face numbers
+        if: github.event_name == 'schedule'
+        run: |
+          today=$(date -u +%F)
+          if ! git show HEAD:src/hf.ts | grep -q "\"synced\": \"$today\""; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add src/hf.ts
+            git diff --cached --quiet || { git commit -m "Hugging Face numbers for $today" && { git push || echo "push skipped, the site still deploys"; }; }
+          fi
       - run: touch dist/.nojekyll
       - uses: actions/upload-pages-artifact@v3
         with:
