@@ -1,6 +1,6 @@
 // Written by scripts/hf-stats.mjs before each build. Do not edit by hand.
 export const hf = {
-  "synced": "2026-10-27",
+  "synced": "2026-10-28",
   "models": 22,
   "downloads": 6293,
   "likes": 9,
