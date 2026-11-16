@@ -1,47 +1,48 @@
 // Written by scripts/hf-stats.mjs before each build. Do not edit by hand.
 export const hf = {
-  "synced": "2026-11-15",
-  "models": 39,
-  "downloads": 29877,
-  "likes": 40,
-  "followers": 13,
+  "synced": "2026-11-16",
+  "models": 40,
+  "downloads": 30146,
+  "likes": 44,
+  "followers": 14,
   "repos": {
     "Pika-H3-Flex-ROCmFPX": 7566,
-    "DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-StrixHalo-GGUF": 5677,
-    "LTX-2.5-22B-dev-uncensored-ROCmFPX": 2554,
-    "MiniMax-M3.1-Flash-StrixHalo-GGUF": 1389,
-    "Drama-3-ROCmFPX-GGUF": 1175,
-    "MiniCPM-V-4.7-35B-A3B-ROCmFPX": 1160,
-    "Qwen3.8-27B-Uncensored-ROCmFPX": 918,
-    "Maya2-Native-GGUF": 858,
-    "flint-ROCmFPX": 613,
+    "DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-StrixHalo-GGUF": 5685,
+    "LTX-2.5-22B-dev-uncensored-ROCmFPX": 2594,
+    "MiniMax-M3.1-Flash-StrixHalo-GGUF": 1391,
+    "Drama-3-ROCmFPX-GGUF": 1182,
+    "MiniCPM-V-4.7-35B-A3B-ROCmFPX": 1172,
+    "Qwen3.8-27B-Uncensored-ROCmFPX": 935,
+    "Maya2-Native-GGUF": 868,
+    "flint-ROCmFPX": 614,
     "Nanbeige4.3-33B-ROCmFPX": 597,
-    "DeepSeek-V4-Pro-Qwen3.5-9B-UNCENSORED-heretic-ROCmFPX": 562,
-    "Sage-A1.5-ROCmFPX": 527,
-    "Clover-35B-A3B-Preview-ROCmFPX": 439,
-    "Groot-19B-A3B-261023-ROCmFPX": 409,
-    "NVIDIA-Nemotron-3.5-Bolt-E4B-ROCmFPX": 394,
+    "DeepSeek-V4-Pro-Qwen3.5-9B-UNCENSORED-heretic-ROCmFPX": 580,
+    "Sage-A1.5-ROCmFPX": 540,
+    "Clover-35B-A3B-Preview-ROCmFPX": 445,
+    "Groot-19B-A3B-261023-ROCmFPX": 412,
+    "NVIDIA-Nemotron-3.5-Bolt-E4B-ROCmFPX": 397,
+    "Nex-N2.6-StrixHalo-GGUF": 363,
     "Ripple-65B-abliterated-ROCmFPX": 363,
     "Spark-X2.6-4B-ROCmFPX": 362,
-    "Ornith-1.5-122B-ROCmFPX": 353,
-    "Nex-N2.6-StrixHalo-GGUF": 352,
-    "Carbon-X-ROCmFPX": 325,
+    "Ornith-1.5-122B-ROCmFPX": 356,
+    "Carbon-X-ROCmFPX": 336,
+    "elephant-1-ROCmFPX": 320,
+    "flux-3-image-klein-ROCmFPX": 307,
     "humanizer-12b-ROCmFPX": 307,
-    "elephant-1-ROCmFPX": 301,
-    "flux-3-image-klein-ROCmFPX": 295,
-    "Audio8-TTS-Realistic-0.6b-ROCmFPX": 280,
-    "NVIDIA-Nemotron-3.5-Transcribe-30B-A4B-ROCmFPX": 273,
-    "Kolibri-1-ROCmFPX": 252,
-    "GLM-5.3-Flash-Uncensored-StrixHalo-GGUF": 235,
-    "LFM3-VL-2B-ROCmFPX": 229,
+    "Audio8-TTS-Realistic-0.6b-ROCmFPX": 288,
+    "NVIDIA-Nemotron-3.5-Transcribe-30B-A4B-ROCmFPX": 274,
+    "Kolibri-1-ROCmFPX": 262,
+    "GLM-5.3-Flash-Uncensored-StrixHalo-GGUF": 237,
+    "LFM3-VL-2B-ROCmFPX": 235,
+    "mammoth-1-ROCmFPX": 234,
     "LFM3-1.7B-Base-ROCmFPX": 207,
-    "mammoth-1-ROCmFPX": 205,
-    "Arete-27B-Uncensored-ROCmFPX": 193,
-    "LFM3-1.7B-ROCmFPX": 173,
-    "Alpie-Seed-9B-ROCmFPX": 143,
-    "MOSS-Image-SFT-ROCmFPX": 131,
-    "Raon-1-nano-ROCmFPX": 55,
-    "MiniMax-H3-Image-ROCmFPX": 5,
+    "Arete-27B-Uncensored-ROCmFPX": 194,
+    "LFM3-1.7B-ROCmFPX": 177,
+    "Alpie-Seed-9B-ROCmFPX": 148,
+    "MOSS-Image-SFT-ROCmFPX": 135,
+    "Raon-1-nano-ROCmFPX": 56,
+    "MiniMax-H3-Image-ROCmFPX": 7,
+    "Inkling-2-Small-StrixHalo-GGUF": 0,
     "Phonon-2-XDNA2": 0,
     "Underdog-Bark-3.0-XDNA2": 0,
     "Qwen4-Flash-Next-ROCmFPX": 0
@@ -51,17 +52,29 @@ export const hf = {
       "tag": "text-to-video",
       "created": "2026-10-20"
     },
+    "Nex-N2.6-StrixHalo-GGUF": {
+      "tag": "image-text-to-text",
+      "created": "2026-11-11"
+    },
     "flux-3-image-klein-ROCmFPX": {
       "tag": "text-to-image",
       "created": "2026-10-19"
+    },
+    "DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-StrixHalo-GGUF": {
+      "tag": "text-generation",
+      "created": "2026-10-27"
     },
     "Ripple-65B-abliterated-ROCmFPX": {
       "tag": "text-generation",
       "created": "2026-11-06"
     },
-    "Nex-N2.6-StrixHalo-GGUF": {
-      "tag": "image-text-to-text",
-      "created": "2026-11-11"
+    "GLM-5.3-Flash-Uncensored-StrixHalo-GGUF": {
+      "tag": "text-generation",
+      "created": "2026-11-10"
+    },
+    "Inkling-2-Small-StrixHalo-GGUF": {
+      "tag": "text-generation",
+      "created": "2026-11-15"
     },
     "MiniCPM-V-4.7-35B-A3B-ROCmFPX": {
       "tag": "text-generation",
@@ -131,10 +144,6 @@ export const hf = {
       "tag": "text-generation",
       "created": "2026-10-26"
     },
-    "DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-StrixHalo-GGUF": {
-      "tag": "text-generation",
-      "created": "2026-10-27"
-    },
     "Maya2-Native-GGUF": {
       "tag": "text-to-speech",
       "created": "2026-10-27"
@@ -182,10 +191,6 @@ export const hf = {
     "Alpie-Seed-9B-ROCmFPX": {
       "tag": "image-text-to-text",
       "created": "2026-11-07"
-    },
-    "GLM-5.3-Flash-Uncensored-StrixHalo-GGUF": {
-      "tag": "text-generation",
-      "created": "2026-11-10"
     },
     "DeepSeek-V4-Pro-Qwen3.5-9B-UNCENSORED-heretic-ROCmFPX": {
       "tag": "image-text-to-text",
