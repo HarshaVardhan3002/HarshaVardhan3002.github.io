@@ -1,48 +1,48 @@
 // Written by scripts/hf-stats.mjs before each build. Do not edit by hand.
 export const hf = {
-  "synced": "2026-11-17",
+  "synced": "2026-11-18",
   "models": 40,
-  "downloads": 30811,
-  "likes": 44,
+  "downloads": 31326,
+  "likes": 48,
   "followers": 14,
   "repos": {
     "Pika-H3-Flex-ROCmFPX": 7578,
-    "DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-StrixHalo-GGUF": 5692,
-    "LTX-2.5-22B-dev-uncensored-ROCmFPX": 2643,
-    "MiniMax-M3.1-Flash-StrixHalo-GGUF": 1412,
-    "Drama-3-ROCmFPX-GGUF": 1202,
-    "MiniCPM-V-4.7-35B-A3B-ROCmFPX": 1185,
-    "Qwen3.8-27B-Uncensored-ROCmFPX": 957,
-    "Maya2-Native-GGUF": 878,
-    "flint-ROCmFPX": 638,
-    "DeepSeek-V4-Pro-Qwen3.5-9B-UNCENSORED-heretic-ROCmFPX": 627,
-    "Nanbeige4.3-33B-ROCmFPX": 622,
-    "Sage-A1.5-ROCmFPX": 574,
-    "Clover-35B-A3B-Preview-ROCmFPX": 460,
-    "Groot-19B-A3B-261023-ROCmFPX": 431,
-    "NVIDIA-Nemotron-3.5-Bolt-E4B-ROCmFPX": 398,
-    "Nex-N2.6-StrixHalo-GGUF": 365,
-    "Spark-X2.6-4B-ROCmFPX": 365,
+    "DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-StrixHalo-GGUF": 5734,
+    "LTX-2.5-22B-dev-uncensored-ROCmFPX": 2664,
+    "MiniMax-M3.1-Flash-StrixHalo-GGUF": 1413,
+    "Drama-3-ROCmFPX-GGUF": 1208,
+    "MiniCPM-V-4.7-35B-A3B-ROCmFPX": 1192,
+    "Qwen3.8-27B-Uncensored-ROCmFPX": 972,
+    "Maya2-Native-GGUF": 913,
+    "DeepSeek-V4-Pro-Qwen3.5-9B-UNCENSORED-heretic-ROCmFPX": 649,
+    "flint-ROCmFPX": 647,
+    "Sage-A1.5-ROCmFPX": 640,
+    "Nanbeige4.3-33B-ROCmFPX": 637,
+    "Clover-35B-A3B-Preview-ROCmFPX": 475,
+    "Groot-19B-A3B-261023-ROCmFPX": 440,
+    "NVIDIA-Nemotron-3.5-Bolt-E4B-ROCmFPX": 404,
+    "Ornith-1.5-122B-ROCmFPX": 384,
+    "Carbon-X-ROCmFPX": 378,
+    "Nex-N2.6-StrixHalo-GGUF": 374,
+    "Spark-X2.6-4B-ROCmFPX": 370,
     "Ripple-65B-abliterated-ROCmFPX": 363,
-    "Carbon-X-ROCmFPX": 361,
-    "Ornith-1.5-122B-ROCmFPX": 360,
-    "elephant-1-ROCmFPX": 328,
-    "flux-3-image-klein-ROCmFPX": 321,
+    "flux-3-image-klein-ROCmFPX": 349,
+    "elephant-1-ROCmFPX": 329,
     "humanizer-12b-ROCmFPX": 307,
-    "Audio8-TTS-Realistic-0.6b-ROCmFPX": 295,
-    "NVIDIA-Nemotron-3.5-Transcribe-30B-A4B-ROCmFPX": 287,
+    "Inkling-2-Small-StrixHalo-GGUF": 304,
+    "NVIDIA-Nemotron-3.5-Transcribe-30B-A4B-ROCmFPX": 302,
+    "Audio8-TTS-Realistic-0.6b-ROCmFPX": 301,
+    "GLM-5.3-Flash-Uncensored-StrixHalo-GGUF": 269,
     "Kolibri-1-ROCmFPX": 262,
-    "GLM-5.3-Flash-Uncensored-StrixHalo-GGUF": 250,
-    "Inkling-2-Small-StrixHalo-GGUF": 245,
-    "LFM3-VL-2B-ROCmFPX": 240,
+    "LFM3-VL-2B-ROCmFPX": 248,
     "mammoth-1-ROCmFPX": 234,
-    "LFM3-1.7B-Base-ROCmFPX": 207,
-    "Arete-27B-Uncensored-ROCmFPX": 194,
+    "Arete-27B-Uncensored-ROCmFPX": 209,
+    "LFM3-1.7B-Base-ROCmFPX": 208,
     "LFM3-1.7B-ROCmFPX": 177,
-    "Alpie-Seed-9B-ROCmFPX": 149,
-    "MOSS-Image-SFT-ROCmFPX": 137,
+    "Alpie-Seed-9B-ROCmFPX": 177,
+    "MOSS-Image-SFT-ROCmFPX": 145,
     "Raon-1-nano-ROCmFPX": 57,
-    "MiniMax-H3-Image-ROCmFPX": 10,
+    "MiniMax-H3-Image-ROCmFPX": 13,
     "Phonon-2-XDNA2": 0,
     "Underdog-Bark-3.0-XDNA2": 0,
     "Qwen4-Flash-Next-ROCmFPX": 0
@@ -60,21 +60,17 @@ export const hf = {
       "tag": "text-to-image",
       "created": "2026-10-19"
     },
+    "Inkling-2-Small-StrixHalo-GGUF": {
+      "tag": "text-generation",
+      "created": "2026-11-15"
+    },
     "DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-StrixHalo-GGUF": {
       "tag": "text-generation",
       "created": "2026-10-27"
     },
-    "Ripple-65B-abliterated-ROCmFPX": {
-      "tag": "text-generation",
-      "created": "2026-11-06"
-    },
     "GLM-5.3-Flash-Uncensored-StrixHalo-GGUF": {
       "tag": "text-generation",
       "created": "2026-11-10"
-    },
-    "Inkling-2-Small-StrixHalo-GGUF": {
-      "tag": "text-generation",
-      "created": "2026-11-15"
     },
     "MiniCPM-V-4.7-35B-A3B-ROCmFPX": {
       "tag": "text-generation",
@@ -187,6 +183,10 @@ export const hf = {
     "Pika-H3-Flex-ROCmFPX": {
       "tag": "image-to-video",
       "created": "2026-10-31"
+    },
+    "Ripple-65B-abliterated-ROCmFPX": {
+      "tag": "text-generation",
+      "created": "2026-11-06"
     },
     "Alpie-Seed-9B-ROCmFPX": {
       "tag": "image-text-to-text",
