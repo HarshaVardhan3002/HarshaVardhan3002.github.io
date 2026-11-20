@@ -1,66 +1,67 @@
 // Written by scripts/hf-stats.mjs before each build. Do not edit by hand.
 export const hf = {
-  "synced": "2026-11-19",
-  "models": 42,
-  "downloads": 32278,
-  "likes": 49,
+  "synced": "2026-11-20",
+  "models": 43,
+  "downloads": 37678,
+  "likes": 51,
   "followers": 15,
   "repos": {
+    "DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-StrixHalo-GGUF": 11028,
     "Pika-H3-Flex-ROCmFPX": 7578,
-    "DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-StrixHalo-GGUF": 6320,
-    "LTX-2.5-22B-dev-uncensored-ROCmFPX": 2683,
-    "MiniMax-M3.1-Flash-StrixHalo-GGUF": 1423,
-    "Drama-3-ROCmFPX-GGUF": 1221,
-    "MiniCPM-V-4.7-35B-A3B-ROCmFPX": 1200,
-    "Qwen3.8-27B-Uncensored-ROCmFPX": 991,
-    "Maya2-Native-GGUF": 920,
-    "DeepSeek-V4-Pro-Qwen3.5-9B-UNCENSORED-heretic-ROCmFPX": 678,
-    "Sage-A1.5-ROCmFPX": 677,
-    "flint-ROCmFPX": 671,
-    "Nanbeige4.3-33B-ROCmFPX": 648,
-    "Clover-35B-A3B-Preview-ROCmFPX": 495,
-    "Groot-19B-A3B-261023-ROCmFPX": 453,
-    "NVIDIA-Nemotron-3.5-Bolt-E4B-ROCmFPX": 412,
-    "Ornith-1.5-122B-ROCmFPX": 394,
-    "Carbon-X-ROCmFPX": 394,
-    "Nex-N2.6-StrixHalo-GGUF": 381,
+    "LTX-2.5-22B-dev-uncensored-ROCmFPX": 2742,
+    "MiniMax-M3.1-Flash-StrixHalo-GGUF": 1428,
+    "Drama-3-ROCmFPX-GGUF": 1222,
+    "MiniCPM-V-4.7-35B-A3B-ROCmFPX": 1202,
+    "Qwen3.8-27B-Uncensored-ROCmFPX": 999,
+    "Maya2-Native-GGUF": 939,
+    "DeepSeek-V4-Pro-Qwen3.5-9B-UNCENSORED-heretic-ROCmFPX": 711,
+    "Sage-A1.5-ROCmFPX": 684,
+    "flint-ROCmFPX": 676,
+    "Nanbeige4.3-33B-ROCmFPX": 664,
+    "Clover-35B-A3B-Preview-ROCmFPX": 514,
+    "Groot-19B-A3B-261023-ROCmFPX": 463,
+    "NVIDIA-Nemotron-3.5-Bolt-E4B-ROCmFPX": 425,
+    "Carbon-X-ROCmFPX": 407,
+    "Ornith-1.5-122B-ROCmFPX": 402,
+    "elephant-1-ROCmFPX": 390,
+    "Nex-N2.6-StrixHalo-GGUF": 389,
     "Spark-X2.6-4B-ROCmFPX": 376,
+    "flux-3-image-klein-ROCmFPX": 364,
     "Ripple-65B-abliterated-ROCmFPX": 363,
-    "flux-3-image-klein-ROCmFPX": 361,
-    "elephant-1-ROCmFPX": 346,
-    "NVIDIA-Nemotron-3.5-Transcribe-30B-A4B-ROCmFPX": 314,
-    "Inkling-2-Small-StrixHalo-GGUF": 313,
+    "Inkling-2-Small-StrixHalo-GGUF": 350,
+    "GLM-5.3-Flash-Uncensored-StrixHalo-GGUF": 335,
+    "NVIDIA-Nemotron-3.5-Transcribe-30B-A4B-ROCmFPX": 334,
+    "mammoth-1-ROCmFPX": 316,
+    "Audio8-TTS-Realistic-0.6b-ROCmFPX": 310,
     "humanizer-12b-ROCmFPX": 309,
-    "Audio8-TTS-Realistic-0.6b-ROCmFPX": 304,
-    "GLM-5.3-Flash-Uncensored-StrixHalo-GGUF": 270,
-    "Kolibri-1-ROCmFPX": 262,
-    "LFM3-VL-2B-ROCmFPX": 253,
-    "mammoth-1-ROCmFPX": 248,
-    "Arete-27B-Uncensored-ROCmFPX": 212,
-    "LFM3-1.7B-Base-ROCmFPX": 208,
-    "LFM3-1.7B-ROCmFPX": 195,
-    "Alpie-Seed-9B-ROCmFPX": 177,
-    "MOSS-Image-SFT-ROCmFPX": 150,
-    "Raon-1-nano-ROCmFPX": 65,
+    "Kolibri-1-ROCmFPX": 269,
+    "LFM3-VL-2B-ROCmFPX": 254,
+    "Arete-27B-Uncensored-ROCmFPX": 234,
+    "LFM3-1.7B-Base-ROCmFPX": 210,
+    "LFM3-1.7B-ROCmFPX": 205,
+    "Alpie-Seed-9B-ROCmFPX": 179,
+    "MOSS-Image-SFT-ROCmFPX": 159,
+    "Haru-4B-ROCmFPX": 85,
+    "SenseNova-Loop-9B-ROCmFPX": 83,
+    "Raon-1-nano-ROCmFPX": 67,
     "MiniMax-H3-Image-ROCmFPX": 13,
     "Phonon-2-XDNA2": 0,
     "Underdog-Bark-3.0-XDNA2": 0,
     "Qwen4-Flash-Next-ROCmFPX": 0,
-    "SenseNova-Loop-9B-ROCmFPX": 0,
-    "Haru-4B-ROCmFPX": 0
+    "Hy4-flash-ROCmFPX": 0
   },
   "info": {
     "LTX-2.5-22B-dev-uncensored-ROCmFPX": {
       "tag": "text-to-video",
       "created": "2026-10-20"
     },
-    "Nex-N2.6-StrixHalo-GGUF": {
-      "tag": "image-text-to-text",
-      "created": "2026-11-11"
-    },
     "flux-3-image-klein-ROCmFPX": {
       "tag": "text-to-image",
       "created": "2026-10-19"
+    },
+    "Nex-N2.6-StrixHalo-GGUF": {
+      "tag": "image-text-to-text",
+      "created": "2026-11-11"
     },
     "Inkling-2-Small-StrixHalo-GGUF": {
       "tag": "text-generation",
@@ -217,6 +218,10 @@ export const hf = {
     "Haru-4B-ROCmFPX": {
       "tag": "audio-to-audio",
       "created": "2026-11-18"
+    },
+    "Hy4-flash-ROCmFPX": {
+      "tag": "",
+      "created": "2026-11-20"
     }
   }
 } as const;
