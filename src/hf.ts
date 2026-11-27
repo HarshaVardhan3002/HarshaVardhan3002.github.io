@@ -1,9 +1,9 @@
 // Written by scripts/hf-stats.mjs before each build. Do not edit by hand.
 export const hf = {
-  "synced": "2026-11-26",
+  "synced": "2026-11-27",
   "models": 46,
   "downloads": 53994,
-  "likes": 70,
+  "likes": 71,
   "followers": 19,
   "repos": {
     "DeepSeek-V4.1-Flash-1017-Uncensored-GSQ-RCO-StrixHalo-GGUF": 11618,
@@ -54,13 +54,13 @@ export const hf = {
     "Qwen4-Flash-Next-ROCmFPX": 0
   },
   "info": {
-    "LTX-2.5-22B-dev-uncensored-ROCmFPX": {
-      "tag": "text-to-video",
-      "created": "2026-10-20"
-    },
     "Inkling-2-Mini-Uncensored-ROCmFPX": {
       "tag": "text-generation",
       "created": "2026-11-21"
+    },
+    "LTX-2.5-22B-dev-uncensored-ROCmFPX": {
+      "tag": "text-to-video",
+      "created": "2026-10-20"
     },
     "Nex-N2.6-StrixHalo-GGUF": {
       "tag": "image-text-to-text",
